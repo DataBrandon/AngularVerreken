@@ -1,5 +1,5 @@
 /**
- * This file includes polyfills needed by Angularver and is loaded before the app.
+ * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
  *
  * This file is divided into 2 sections:
@@ -24,7 +24,7 @@
 /**
  * Web Animations `@angular/platform-browser/animations`
  * Only required if AnimationBuilder is used within the application and using IE/Edge or Safari.
- * Standard animation support in Angularver DOES NOT require any polyfills (as of Angularver 6.0).
+ * Standard animation support in Angular DOES NOT require any polyfills (as of Angular 6.0).
  */
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
@@ -53,9 +53,9 @@
  */
 
 /***************************************************************************************************
- * Zone JS is required by default for Angularver itself.
+ * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone';  // Included with Angularver CLI.
+import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 
 /***************************************************************************************************
