@@ -1,0 +1,18 @@
+<form [formGroup]="logForm" (ngSubmit)="onSubmit()"> 
+    <div>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Number</mat-label>
+      <input matInput formControlName="code" required placeholder="Ex.123456">
+      <mat-error>
+        <span *ngIf="!logForm.get('code').valid && logForm.get('code').touched">Code is 6 digits long</span>
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit" [disabled]= "!logForm.valid">Add User</button>
+    </div>
+</form>
+
+<h2>Door tijdsnood niet een respond van de server werkend gekregen</h2>
+
+  <div>
+    <ngx-json-viewer [json]=""></ngx-json-viewer>
+  </div>

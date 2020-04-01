@@ -1,0 +1,84 @@
+<form [formGroup]="deelnemerForm" (ngSubmit)="onSubmit()"> 
+    <div>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required placeholder="Ex. Prince Harry">
+      <mat-error>
+        <span *ngIf="!deelnemerForm.get('name').valid && deelnemerForm.get('name').touched">Name is to Short 3 chars minimal</span>
+      </mat-error>
+    </mat-form-field>
+
+    </div>
+    <div>
+    <mat-form-field class="full-width" appearance="outline" >
+        <mat-label>amount</mat-label>
+        <input matInput type="number" formControlName ="amount" required placeholder="Ex. 150,00">
+        <span matPrefix>€&nbsp;</span>
+        <mat-error>
+          <span *ngIf="!deelnemerForm.get('name').valid && deelnemerForm.get('amount').touched">Amount must have 2 decimals</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="accent" type="submit" [disabled]="!deelnemerForm.valid">Add User</button>
+    <button mat-raised-button color ="warn"
+    [disabled]="users.length===0"
+    (click)="onClearUsers()">
+    Clear
+  </button>
+
+  
+  </form>
+
+<!-- Display deelnemers -->
+<div *ngIf="users.length > 0">
+<div>
+  <h2>How much did everbody pay:</h2>
+  <ul>
+    <li *ngFor="let user of users">
+      {{user.name}} has paid {{user.amount | currency:'EUR'}}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="users.length > 0">
+  <button mat-raised-button color ="primary"
+  [disabled]="users.length===0"
+  (click)="onCalculate()">
+  Calculate
+</button>
+<!-- <button mat-raised-button color ="warn"
+  [disabled]="users.length===0"
+  (click)="sendToServer()">
+  Save on server
+</button> -->
+
+<button mat-raised-button color ="warn"
+  [disabled]="users.length===0"
+  >
+  Save on server, Niet af
+</button>
+</div>
+
+
+</div>
+
+<div *ngIf="gotData">
+  Total money spend = {{collect.total | currency:'EUR'}}
+</div>
+
+<div *ngIf="gotData">
+  <div>
+    <h2>who pay who:</h2>
+    <ul *ngIf="collect.transfers.length > 0 then transfers else no_transfers"></ul>
+      <ng-template #transfers>
+      <ul>  
+      <li *ngFor="let transfer of collect.transfers">
+        {{transfer.from.name}} has to pay {{transfer.to.name}} : {{transfer.amount | currency:'EUR'}}
+      </li>
+      </ul>
+    </ng-template>
+  
+    <ng-template #no_transfers><h3>Everyone has payed te same so no transaction required</h3></ng-template>
+    
+  </div>
+</div>
